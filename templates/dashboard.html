@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="stats">
+  <article><h2>{{ stats.total_targets }}</h2><p>Targets</p></article>
+  <article><h2>{{ stats.total_findings }}</h2><p>Findings</p></article>
+  <article><h2>{{ stats.critical_findings }}</h2><p>Critical</p></article>
+  <article><h2>{{ stats.resolved_findings }}</h2><p>Resolved</p></article>
+</section>
+
+<section>
+  <h2>Targets</h2>
+  <table>
+    <thead><tr><th>Name</th><th>Scope</th><th>Bounty Range</th></tr></thead>
+    <tbody>
+      {% for target in targets %}
+      <tr>
+        <td>{{ target.name }}</td>
+        <td>{{ target.scope }}</td>
+        <td>${{ target.reward_min }} - ${{ target.reward_max }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="3">No targets yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Findings</h2>
+  <table>
+    <thead><tr><th>Target</th><th>Title</th><th>Severity</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for finding in findings %}
+      <tr>
+        <td>{{ finding.target_name }}</td>
+        <td>{{ finding.title }}</td>
+        <td>{{ finding.severity }}</td>
+        <td>{{ finding.status }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No findings submitted yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

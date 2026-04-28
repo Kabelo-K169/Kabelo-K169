@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Bug Bounty Target</h2>
+<form method="post">
+  <label>Name <input name="name" required /></label>
+  <label>Scope <input name="scope" required placeholder="*.example.com" /></label>
+  <label>Min Reward <input type="number" name="reward_min" min="0" value="100" /></label>
+  <label>Max Reward <input type="number" name="reward_max" min="0" value="5000" /></label>
+  <button type="submit">Create Target</button>
+</form>
+{% endblock %}
